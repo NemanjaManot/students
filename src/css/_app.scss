@@ -2,6 +2,7 @@ div {
   p {
     color: $main-color;
     text-align: center;
+    font-size: 22px;
   }
   img {
     margin-left: 520px;
@@ -18,3 +19,24 @@ div {
     font-size: 17px;
   }
 }
+
+ul {
+  background: #8dff69;
+  list-style: none;
+  li {
+    text-decoration: none;
+    display: inline-block;
+    height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 15px 50px;
+    a {
+      text-decoration: none;
+      color: #014223;
+    }
+    a:hover {
+      border-bottom: 2px solid black;
+    }
+  }
+}
+

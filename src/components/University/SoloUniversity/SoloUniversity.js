@@ -44,11 +44,11 @@ class SoloUniversity extends React.Component {
         console.log(this.props);
         // const { name, info, image } = this.state.foundUniversity;
         return (
-            <div className="StudentTab container">
-                <div className="basicCard">
-                    <div className="studentData text-center">
+            <div>
+                <div>
+                    <div>
                         { /*<img src={ image } alt={ name }/>*/ }
-                        <h1>aaa</h1>
+                        <h1>shhhhhhhhhhhh</h1>
                         { /*<p>Address: { info.address }</p>*/ }
                     </div>
                 </div>

@@ -1,5 +1,20 @@
 div {
-   p {
-      color: $main-color;
-   }
+  p {
+    color: $main-color;
+    text-align: center;
+  }
+  img {
+    margin-left: 520px;
+  }
+  button {
+    display: block;
+    margin-left: 520px;
+    width: 100px;
+    height: 25px;
+    background: #608cff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 17px;
+  }
 }

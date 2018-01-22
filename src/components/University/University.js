@@ -1,7 +1,8 @@
 import React from 'react';
 import UniversityInfo from "../../services/UniversityServices";
-import { Link, Route } from 'react-router-dom';
-import SoloUniversity from '/home/djordje/WebstormProjects/students/src/components/University/SoloUniversity/SoloUniversity.js';
+import { Link } from 'react-router-dom';
+
+// import SoloUniversity from '/home/djordje/WebstormProjects/students/src/components/University/SoloUniversity/SoloUniversity.js';
 
 class University extends React.Component {
     constructor() {

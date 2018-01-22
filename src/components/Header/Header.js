@@ -5,7 +5,8 @@ const Header = () => (
     <header>
         <nav>
             <ul>
-                <li><Link to='/'>University</Link></li>
+                <li><Link to='/'>Home</Link></li>            
+                <li><Link to='/university'>University</Link></li>
                 <li><Link to='/students'>Students</Link></li>
             </ul>
         </nav>

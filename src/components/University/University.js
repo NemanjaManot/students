@@ -1,7 +1,7 @@
 import React from 'react';
 import UniversityInfo from "../../services/UniversityServices";
 import { Link, Route } from 'react-router-dom';
-import SoloUniversity from '/home/djordje/WebstormProjects/students/src/components/University/SoloUniversity/SoloUniversity.js';
+import SoloUniversity from './SoloUniversity/SoloUniversity';
 
 class University extends React.Component {
     constructor() {
@@ -30,13 +30,16 @@ class University extends React.Component {
                             <p>{ university.name }</p>
                             <img src={ university.image }/>
                             <Link key={ university.universityId }
-                                  to={ `university/${university.universityId}` }
+                                  to={`${this.props.match.path}/${university.universityId}`}
                             >
                                 <button>Show More</button>
                             </Link>
                         </div>
                     )
                     }
+                    <Route path={`${this.props.match.path}/:universityId`} render={(props) => 
+                        <SoloUniversity {...props} allUniversity={allUniversity} />} 
+                    />
                 </div>
             </div>
         );

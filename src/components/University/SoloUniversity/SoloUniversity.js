@@ -1,5 +1,5 @@
 import React from 'react';
-import UniversityServices from '/home/djordje/WebstormProjects/students/src/services/UniversityServices.js';
+import UniversityServices from '../../../services/UniversityServices';
 
 class SoloUniversity extends React.Component {
     constructor() {
@@ -42,7 +42,6 @@ class SoloUniversity extends React.Component {
 */
     render() {
         console.log(this.props);
-        // console.log(this.state.foundUniversity);
         // const { name, info, image } = this.state.foundUniversity;
         return (
             <div className="StudentTab container">
@@ -57,9 +56,5 @@ class SoloUniversity extends React.Component {
         );
     }
 }
-
-// SoloUniversity.propTypes = {
-//     match: PropTypes.object
-// };
 
 export default SoloUniversity;

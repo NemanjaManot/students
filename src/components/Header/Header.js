@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Header = () => (
     <header>
         <nav>
             <ul>
-                <li><Link to='/'>Home</Link></li>            
-                <li><Link to='/university'>University</Link></li>
-                <li><Link to='/students'>Students</Link></li>
+                <li><NavLink to='/'>Home</NavLink></li>
+                <li><NavLink to='/university'>University</NavLink></li>
+                <li><NavLink to='/students'>Students</NavLink></li>
             </ul>
         </nav>
     </header>

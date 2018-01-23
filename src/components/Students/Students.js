@@ -1,7 +1,11 @@
+//react
 import React from 'react';
+
+//axios
 import StudentsServices from "../../services/StudentsServices";
 
-// import classes from './Students.css';
+//style
+import './Students.scss';
 
 class Students extends React.Component {
     state = {
@@ -21,7 +25,7 @@ class Students extends React.Component {
         return (
             <div>
                 { allStudents.map(student =>
-                    <div key={ student.id }>
+                    <div className="students" key={ student.id }>
                         <p>{ student.firstName } { student.lastName }</p>
                         <img src={ student.image }/>
                     </div>

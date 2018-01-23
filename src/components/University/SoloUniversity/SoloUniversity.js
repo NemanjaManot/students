@@ -6,49 +6,53 @@ class SoloUniversity extends React.Component {
         super();
         this.state = {
             university: [],
-            foundUniversity: {}
+            foundUniversity: []
         }
     }
 
-    /*componentWillReceiveProps(nextProps) {
-        if (nextProps.match.params.universityId !== this.props.match.params.universityId) {
-            const foundUniversity = this.state.university.find(university => university.universityId === nextProps.match.params.universityId);
-            this.setState({
-                foundUniversity
-            });
-        }
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     debugger;
+    //     if (nextProps.match.params.universityId !== this.props.match.params.universityId) {
+    //         const foundUniversity = this.state.university.find(university => university.universityId === nextProps.match.params.universityId);
+    //         this.setState({
+    //             foundUniversity
+    //         });
+    //     }
+    // }
+    //
+    //
+    // componentDidMount() {
+    //     debugger;
+    //     UniversityServices.getAllData()
+    //         .then(response => {
+    //             let university = response.data;
+    //             if (university) {
+    //                 this.setState({
+    //                     university
+    //                 });
+    //                 //console.log(university);
+    //             }
+    //             const foundUniversity = this.state.university.find(() => university.universityId === this.props.match.params.universityId);
+    //             //console.log(foundUniversity);
+    //             this.setState({
+    //                 foundUniversity
+    //             });
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // }
 
-    componentDidMount() {
-        UniversityServices.getAllData()
-            .then(response => {
-                let university = response.data;
-                if (university) {
-                    this.setState({
-                        university
-                    });
-                    //console.log(university);
-                }
-                const foundUniversity = this.state.university.find(university => university.universityId === this.props.match.params.universityId);
-                //console.log(foundUniversity);
-                this.setState({
-                    foundUniversity
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
-*/
     render() {
-        console.log(this.props);
-        // const { name, info, image } = this.state.foundUniversity;
+        let alo = this.props.allUniversity;
+        // console.log(alo);
         return (
             <div>
                 <div>
                     <div>
                         { /*<img src={ image } alt={ name }/>*/ }
-                        <h1>shhhhhhhhhhhh</h1>
+                        <h1>aaaaaaaa</h1>
+                        { alo.map(univer => <div>{ univer.name }</div>) }
                         { /*<p>Address: { info.address }</p>*/ }
                     </div>
                 </div>

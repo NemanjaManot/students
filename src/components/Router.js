@@ -1,6 +1,8 @@
+//react
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
+//components
 import Header from './Header/Header';
 import Home from './Home/Home';
 import University from './University/University'

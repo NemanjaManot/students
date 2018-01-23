@@ -28,6 +28,11 @@ class Students extends React.Component {
                     <div className="students" key={ student.id }>
                         <p>{ student.firstName } { student.lastName }</p>
                         <img src={ student.image }/>
+                        <form className="formselector">
+                            <input type="radio" value="1" name="formsel"/>
+                            <input type="radio" value="2" name="formsel"/>
+                            <input type="radio" value="3" name="formsel"/>
+                        </form>
                     </div>
                 ) }
             </div>

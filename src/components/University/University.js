@@ -30,6 +30,7 @@ class University extends React.Component {
 
     render() {
         let allUniversity = this.state.university;
+        // console.log(this.state);
         return (
             <div>
                 <div>
@@ -46,7 +47,7 @@ class University extends React.Component {
                     )
                     }
                     <Route path={ `${this.props.match.path}/:universityId` } render={ (props) =>
-                        <SoloUniversity { ...props } allUniversity={ this.state.university }/> }
+                        <SoloUniversity { ...props } allUniversity={ allUniversity }/> }
                     />
                 </div>
             </div>

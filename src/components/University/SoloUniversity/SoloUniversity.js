@@ -1,28 +1,32 @@
 import React from 'react';
-import UniversityServices from '../../../services/UniversityServices';
+
+import './SoloUniversity.scss';
 
 class SoloUniversity extends React.Component {
     constructor() {
         super();
         this.state = {
             university: [],
-            foundUniversity: []
+            foundUniversity: {
+                name: '',
+                image: '',
+                info: {}
+            }
         }
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     debugger;
-    //     if (nextProps.match.params.universityId !== this.props.match.params.universityId) {
-    //         const foundUniversity = this.state.university.find(university => university.universityId === nextProps.match.params.universityId);
-    //         this.setState({
-    //             foundUniversity
-    //         });
-    //     }
-    // }
-    //
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.match.params.universityId !== this.props.match.params.universityId) {
+            const foundUniversity = this.props.allUniversity.find(university => university.universityId == nextProps.match.params.universityId);
+            this.setState({
+                foundUniversity
+            });
+        }
+    }
+
     //
     // componentDidMount() {
-    //     debugger;
+    //     // debugger;
     //     UniversityServices.getAllData()
     //         .then(response => {
     //             let university = response.data;
@@ -44,16 +48,16 @@ class SoloUniversity extends React.Component {
     // }
 
     render() {
-        let alo = this.props.allUniversity;
-        // console.log(alo);
+        const { name, info, image } = this.state.foundUniversity;
         return (
             <div>
                 <div>
-                    <div>
-                        { /*<img src={ image } alt={ name }/>*/ }
-                        <h1>aaaaaaaa</h1>
-                        { alo.map(univer => <div>{ univer.name }</div>) }
-                        { /*<p>Address: { info.address }</p>*/ }
+                    <div className="soloUniversity">
+                        <h1>{ name }</h1>
+                        <img src={ image }/>
+                        <p>Address: { info.address }</p>
+                        <p>Established: { info.established }</p>
+                        <p>President: { info.president }</p>
                     </div>
                 </div>
             </div>

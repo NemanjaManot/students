@@ -10,9 +10,8 @@ import './Students.scss';
 class Students extends React.Component {
     state = {
         students: [],
-        here: 0,
-        nothere: 0,
-        late: 0
+        search: '',
+        newStudents: []
     };
 
     componentDidMount() {
@@ -23,60 +22,70 @@ class Students extends React.Component {
         });
     }
 
-    studentStatus(e) {
-        let here = this.state.here;
-        let nothere = this.state.nothere;
-        let late = this.state.late;
-        if (e === 'here') {
-            here++;
-            this.setState({
-                here: here
-            })
-        } else if (e === 'nothere') {
-            nothere++;
-            this.setState({
-                nothere: nothere
-            })
-        } else if (e === 'late') {
-            late++;
-            this.setState({
-                late: late
-            })
-        }
+    updateSearch(event) {
+        this.setState({
+            search: event.target.value
+        })
     }
 
+    submitForm(event) {
+        componentDidMount();
+        this.state.newStudents.push({
+            "gender": event.target[0].value,
+            "firstName": event.target[1].value,
+            "lastName": event.target[2].value,
+            "image": event.target[3].value,
+            "id": Math.random() * 10,
+            "universityId": parseInt(event.target[4].value)
+        });
+        event.preventDefault();
+    }
 
     render() {
-        let allStudents = this.state.students;
-        const studentColor = allStudents.map(student => student.attendanceMark.present);
-        console.log(studentColor);
-
+        let allStudents = this.state.newStudents;
+        let filteredStudents = allStudents.filter(
+            (student) => {
+                return student.firstName.toUpperCase().indexOf(this.state.search.toUpperCase()) !== -1;
+            }
+        );
+        console.log(allStudents);
         return (
             <div>
-                { allStudents.map(student =>
-                    <div className="students" key={ student.id }>
-                        <p>{ student.firstName } { student.lastName }</p>
-                        <img src={ student.image }/>
-                        <form className="formselector">
-                            <span>Here:</span><input onChange={ this.studentStatus.bind(this, 'here') }
-                                                     type="radio"
-                                                     value="here"
-                                                     name="formsel"/>
-                            <span>Not Here:</span><input onChange={ this.studentStatus.bind(this, 'nothere') }
-                                                         type="radio"
-                                                         value="nothere"
-                                                         name="formsel"/>
-                            <span>Late:</span><input onChange={ this.studentStatus.bind(this, 'late') }
-                                                     type="radio"
-                                                     value="late"
-                                                     name="formsel"/>
-                        </form>
-                    </div>
-                ) }
-                <p> Here: { this.state.here }</p>
-                <p> Not here: { this.state.nothere }</p>
-                <p> Late: { this.state.late } </p>
-
+                <input className="searchInput"
+                       type="text"
+                       value={ this.state.search }
+                       onChange={ this.updateSearch.bind(this) }
+                       placeholder="Search"/>
+                <form className="addStudentForm" onSubmit={ this.submitForm.bind(this) }>
+                    <label>Gender:</label>
+                    <select>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                    <label>First Name:</label><input id='name' type='text' placeholder='First Name' required/>
+                    <label>Last Name:</label><input id='lastName' type='text' placeholder='Last Name' required/>
+                    <label>Image:</label><input id='email' type='text' placeholder='Image' required/>
+                    <label>University:</label>
+                    <select>
+                        <option value="1">University Of California</option>
+                        <option value="2">Stanford University</option>
+                        <option value="3">Harvard University</option>
+                        <option value="4">Columbia University</option>
+                    </select>
+                    <input type="submit"/>
+                </form>
+                <div>
+                    { filteredStudents.map(student =>
+                        <div className="students" key={ student.id }>
+                            <p>{ student.firstName } { student.lastName }</p>
+                            <img src={ student.image }/>
+                            <div className="circle"
+                                 style={ student.attendanceMark.present ? { backgroundColor: 'green' } : { backgroundColor: 'red' } }></div>
+                            <div className="circle"
+                                 style={ student.attendanceMark.late ? { backgroundColor: 'yellow' } : { backgroundColor: '' } }></div>
+                        </div>
+                    ) }
+                </div>
             </div>
         );
     }

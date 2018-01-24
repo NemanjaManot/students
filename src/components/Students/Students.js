@@ -11,7 +11,7 @@ class Students extends React.Component {
     state = {
         students: [],
         search: '',
-        newStudents: []
+        deleteMode: false
     };
 
     componentDidMount() {
@@ -28,14 +28,31 @@ class Students extends React.Component {
         })
     }
 
+    changeDeleteStatus() {
+        this.setState({
+            deleteMode: true
+        })
+    }
+
     submitForm(event) {
-        this.state.students.push({
-            "gender": event.target[0].value,
-            "firstName": event.target[1].value,
-            "lastName": event.target[2].value,
-            "image": event.target[3].value,
-            "id": Math.random() * 10,
-            "universityId": parseInt(event.target[4].value)
+        let newStudent = {
+            gender: event.target[0].value,
+            firstName: event.target[1].value,
+            lastName: event.target[2].value,
+            image: event.target[3].value,
+            id: Math.random() * 10,
+            universityId: parseInt(event.target[4].value),
+            attendanceMark: {}
+        };
+        if (event.target[5].value === 'present') {
+            newStudent.attendanceMark.present = true;
+        } else if (event.target[5].value === 'late') {
+            newStudent.attendanceMark.late = true;
+        } else {
+            newStudent.attendanceMark.absent = true;
+        }
+        this.setState({
+            students: this.state.students.concat(newStudent)
         });
         event.preventDefault();
     }
@@ -43,11 +60,11 @@ class Students extends React.Component {
     render() {
         let allStudents = this.state.students;
         let filteredStudents = allStudents.filter(
-            (student) => {
+            student => {
                 return student.firstName.toUpperCase().indexOf(this.state.search.toUpperCase()) !== -1;
             }
         );
-        console.log(allStudents);
+        console.log(filteredStudents);
         return (
             <div>
                 <input className="searchInput"
@@ -71,19 +88,31 @@ class Students extends React.Component {
                         <option value="3">Harvard University</option>
                         <option value="4">Columbia University</option>
                     </select>
+                    <label>Status:</label>
+                    <select>
+                        <option value="present">present</option>
+                        <option value="late">late</option>
+                        <option value="absent">absent</option>
+                    </select>
                     <input type="submit"/>
                 </form>
                 <div>
                     { filteredStudents.map(student =>
                         <div className="students" key={ student.id }>
-                            <p>{ student.firstName } { student.lastName }</p>
+                            { /*{ this.state.deleteMode ? (<p>{ student.firstName } { student.lastName }</p>) :*/ }
+                            { /*<input onClick={ this.deleteStudent.bind(this, 'id') }/> }*/ }
+                            { this.state.deleteMode ? <p>DELETE</p> :
+                                <p onClick={ this.changeDeleteStatus.bind(this) }>{ student.firstName } { student.lastName }</p> }
                             <img src={ student.image }/>
                             <div className="circle"
-                                 style={ student.attendanceMark.present ? { backgroundColor: 'green' } : { backgroundColor: 'red' } }></div>
+                                 style={ student.attendanceMark.present ? { backgroundColor: '#2ecc71' } : { backgroundColor: '#e74c3c' } }>
+                            </div>
                             <div className="circle"
-                                 style={ student.attendanceMark.late ? { backgroundColor: 'yellow' } : { backgroundColor: '' } }></div>
+                                 style={ student.attendanceMark.late ? { backgroundColor: '#f1c40f' } : { backgroundColor: '' } }>
+                            </div>
                         </div>
-                    ) }
+                    )
+                    }
                 </div>
             </div>
         );

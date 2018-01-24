@@ -9,10 +9,16 @@
     height: 200px;
     margin: 0 50px;
   }
+  button {
+    position: relative;
+    z-index: 1;
+    left: -470px;
+    padding: 0;
+  }
 }
 
 .searchInput {
-  margin-left: 50px;
+  margin-left: 110px;
   width: 220px;
   font-size: 16px;
 }
@@ -27,11 +33,15 @@
 }
 
 .addStudentForm {
-  margin-left: 50px;
+  margin-left: 60px;
+  label {
+    padding-left: 50px;
+  }
   input {
-    margin: 0 5px;
+    margin: 3px;
   }
   select {
-    margin: 5px;
+    margin: 3px;
   }
 }
+

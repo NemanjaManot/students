@@ -29,8 +29,7 @@ class Students extends React.Component {
     }
 
     submitForm(event) {
-        componentDidMount();
-        this.state.newStudents.push({
+        this.state.students.push({
             "gender": event.target[0].value,
             "firstName": event.target[1].value,
             "lastName": event.target[2].value,
@@ -42,7 +41,7 @@ class Students extends React.Component {
     }
 
     render() {
-        let allStudents = this.state.newStudents;
+        let allStudents = this.state.students;
         let filteredStudents = allStudents.filter(
             (student) => {
                 return student.firstName.toUpperCase().indexOf(this.state.search.toUpperCase()) !== -1;

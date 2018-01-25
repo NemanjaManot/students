@@ -1,7 +1,7 @@
 //react
 import React from 'react';
 
-//axios
+//services
 import StudentsServices from "../../services/StudentsServices";
 
 //style
@@ -11,7 +11,7 @@ class Students extends React.Component {
     state = {
         students: [],
         search: '',
-        deleteMode: false
+        selectedUserId: null
     };
 
     componentDidMount() {
@@ -29,9 +29,8 @@ class Students extends React.Component {
     }
 
     changeDeleteStatus(id) {
-        console.log(id);
         this.setState({
-            deleteMode: id
+            selectedUserId: id
         })
     }
 
@@ -58,10 +57,10 @@ class Students extends React.Component {
         event.preventDefault();
     }
 
-    deleteStudent(student) {
+    deleteStudent(selectedStudent) {
         const students = this.state.students;
         this.setState({
-            students: students.filter(students => students.id !== student.id)
+            students: students.filter(students => students.id !== selectedStudent.id)
         });
     }
 
@@ -106,9 +105,7 @@ class Students extends React.Component {
                 <div>
                     { filteredStudents.map(student =>
                         <div className="students" key={ student.id }>
-                            { /*{ this.state.deleteMode ? (<p>{ student.firstName } { student.lastName }</p>) :*/ }
-                            { /*<input onClick={ this.deleteStudent.bind(this, 'id') }/> }*/ }
-                            { this.state.deleteMode == student.id ?
+                            { this.state.selectedUserId == student.id ?
                                 <p onClick={ this.deleteStudent.bind(this, student) }>DELETE</p> :
                                 <p key={ student.id }
                                    onClick={ this.changeDeleteStatus.bind(this, student.id) }>{ student.firstName } { student.lastName }</p> }

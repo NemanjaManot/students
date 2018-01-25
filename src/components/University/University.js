@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
 
-//axios
+//services
 import UniversityInfo from "../../services/UniversityServices";
 
 //components
@@ -30,7 +30,6 @@ class University extends React.Component {
 
     render() {
         let allUniversity = this.state.university;
-        // console.log(this.state);
         return (
             <div>
                 <div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-//axios
+//services
 import StudentsServices from '../../../services/StudentsServices';
 
 //style

@@ -64,6 +64,22 @@ class Students extends React.Component {
         });
     }
 
+    renderStatus = (status) => {
+        let statusColor;
+        if (status.present) {
+            statusColor = '#2ecc71';
+        } else if (status.late) {
+            statusColor = '#f1c40f';
+        } else {
+            statusColor = '#c0392b';
+        }
+        return (
+            <div className="circle"
+                 style={ { backgroundColor: statusColor } }>
+            </div>
+        );
+    };
+
     render() {
         let allStudents = this.state.students;
         let filteredStudents = allStudents.filter(
@@ -108,14 +124,10 @@ class Students extends React.Component {
                             { this.state.selectedUserId == student.id ?
                                 <p onClick={ this.deleteStudent.bind(this, student) }>DELETE</p> :
                                 <p key={ student.id }
-                                   onClick={ this.changeDeleteStatus.bind(this, student.id) }>{ student.firstName } { student.lastName }</p> }
+                                   onClick={ this.changeDeleteStatus.bind(this, student.id) }>
+                                    { student.firstName } { student.lastName }</p> }
                             <img src={ student.image }/>
-                            <div className="circle"
-                                 style={ student.attendanceMark.present ? { backgroundColor: '#2ecc71' } : { backgroundColor: '#e74c3c' } }>
-                            </div>
-                            <div className="circle"
-                                 style={ student.attendanceMark.late ? { backgroundColor: '#f1c40f' } : { backgroundColor: '' } }>
-                            </div>
+                            { this.renderStatus(student.attendanceMark) }
                         </div>
                     )
                     }

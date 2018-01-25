@@ -28,9 +28,10 @@ class Students extends React.Component {
         })
     }
 
-    changeDeleteStatus() {
+    changeDeleteStatus(id) {
+        console.log(id);
         this.setState({
-            deleteMode: true
+            deleteMode: id
         })
     }
 
@@ -57,6 +58,13 @@ class Students extends React.Component {
         event.preventDefault();
     }
 
+    deleteStudent(student) {
+        const students = this.state.students;
+        this.setState({
+            students: students.filter(students => students.id !== student.id)
+        });
+    }
+
     render() {
         let allStudents = this.state.students;
         let filteredStudents = allStudents.filter(
@@ -64,7 +72,6 @@ class Students extends React.Component {
                 return student.firstName.toUpperCase().indexOf(this.state.search.toUpperCase()) !== -1;
             }
         );
-        console.log(filteredStudents);
         return (
             <div>
                 <input className="searchInput"
@@ -101,8 +108,10 @@ class Students extends React.Component {
                         <div className="students" key={ student.id }>
                             { /*{ this.state.deleteMode ? (<p>{ student.firstName } { student.lastName }</p>) :*/ }
                             { /*<input onClick={ this.deleteStudent.bind(this, 'id') }/> }*/ }
-                            { this.state.deleteMode ? <p>DELETE</p> :
-                                <p onClick={ this.changeDeleteStatus.bind(this) }>{ student.firstName } { student.lastName }</p> }
+                            { this.state.deleteMode == student.id ?
+                                <p onClick={ this.deleteStudent.bind(this, student) }>DELETE</p> :
+                                <p key={ student.id }
+                                   onClick={ this.changeDeleteStatus.bind(this, student.id) }>{ student.firstName } { student.lastName }</p> }
                             <img src={ student.image }/>
                             <div className="circle"
                                  style={ student.attendanceMark.present ? { backgroundColor: '#2ecc71' } : { backgroundColor: '#e74c3c' } }>

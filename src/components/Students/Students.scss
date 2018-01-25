@@ -1,0 +1,47 @@
+.students {
+  width: 300px;
+  height: 300px;
+  display: table-cell;
+  float: left;
+  position: relative;
+  img {
+    width: 200px;
+    height: 200px;
+    margin: 0 50px;
+  }
+  button {
+    position: relative;
+    z-index: 1;
+    left: -470px;
+    padding: 0;
+  }
+}
+
+.searchInput {
+  margin-left: 110px;
+  width: 220px;
+  font-size: 16px;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 30px;
+  bottom: 8px;
+}
+
+.addStudentForm {
+  margin-left: 60px;
+  label {
+    padding-left: 50px;
+  }
+  input {
+    margin: 3px;
+  }
+  select {
+    margin: 3px;
+  }
+}
+

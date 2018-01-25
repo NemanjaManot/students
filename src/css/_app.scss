@@ -1,5 +1,47 @@
-div {
-   p {
-      color: $main-color;
-   }
+body {
+  font-family: 'Architects Daughter';
 }
+
+div {
+  p {
+    color: $main-color;
+    text-align: center;
+    font-size: 22px;
+  }
+  img {
+    margin-left: 520px;
+  }
+  button {
+    display: block;
+    margin-left: 520px;
+    width: 100px;
+    height: 25px;
+    background: #e15f41;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 17px;
+  }
+}
+
+ul {
+  background: #f3a683;
+  list-style: none;
+  li {
+    text-decoration: none;
+    display: inline-block;
+    height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 15px 50px;
+    a {
+      text-decoration: none;
+      color: #864543;
+    }
+    a:hover {
+      border-bottom: 2px solid #864543;
+    }
+  }
+}
+
+
